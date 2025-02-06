@@ -124,8 +124,10 @@ function play() {
 }
 
 // Controle do movimento do pássaro com teclas
+let isKeyDown = false;  // Evitar múltiplos eventos enquanto a tecla estiver pressionada
 document.addEventListener('keydown', (e) => {
-    if (e.key == 'ArrowUp' || e.key == ' ') {
+    if ((e.key == 'ArrowUp' || e.key == ' ') && !isKeyDown) {
+        isKeyDown = true;  // Impede que a tecla seja processada novamente enquanto pressionada
         img.src = 'img/Bird-2.png'; // Imagem do pássaro subindo
         bird_dy = -7.6; // Defina a aceleração para subir
     }
@@ -133,6 +135,7 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keyup', (e) => {
     if (e.key == 'ArrowUp' || e.key == ' ') {
+        isKeyDown = false;  // Libera a tecla ao soltar
         img.src = 'img/Bird.png'; // Imagem do pássaro normal
     }
 });
