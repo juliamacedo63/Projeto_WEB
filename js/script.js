@@ -7,7 +7,7 @@ let sound_die = new Audio('sounds effect/die.mp3');
 // getting bird element properties
 let bird_props = bird.getBoundingClientRect();
 
-// This method returns DOMRect -> top, right, bottom, left, x, y, width and height
+// This method returns DOMReact -> top, right, bottom, left, x, y, width and height
 let background = document.querySelector('.background').getBoundingClientRect();
 
 let score_val = document.querySelector('.score_val');
@@ -72,14 +72,14 @@ function play() {
         bird_dy = bird_dy + gravity;
         document.addEventListener('keydown', (e) => {
             if (e.key == 'ArrowUp' || e.key == ' ') {
-                img.src = 'img/Bird-2.png'; // Alterado para img
+                img.src = 'img/Bird-2.png';
                 bird_dy = -7.6;
             }
         });
 
         document.addEventListener('keyup', (e) => {
             if (e.key == 'ArrowUp' || e.key == ' ') {
-                img.src = 'img/Bird.png'; // Alterado para img
+                img.src = 'img/Bird.png';
             }
         });
 
@@ -96,15 +96,15 @@ function play() {
     }
     requestAnimationFrame(apply_gravity);
 
-    let pipe_seperation = 0;
+    let pipe_separation = 0;
 
     let pipe_gap = 35;
 
     function create_pipe() {
         if (game_state != 'Play') return;
 
-        if (pipe_seperation > 115) {
-            pipe_seperation = 0;
+        if (pipe_separation > 115) {
+            pipe_separation = 0;
 
             let pipe_posi = Math.floor(Math.random() * 43) + 8;
             let pipe_sprite_inv = document.createElement('div');
@@ -121,7 +121,7 @@ function play() {
 
             document.body.appendChild(pipe_sprite);
         }
-        pipe_seperation++;
+        pipe_separation++;
         requestAnimationFrame(create_pipe);
     }
     requestAnimationFrame(create_pipe);
