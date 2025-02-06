@@ -72,10 +72,11 @@ function play() {
     function apply_gravity() {
         if (game_state !== 'Play') return;
 
-        bird_dy += gravity;
+        bird_dy += gravity; // A gravidade aumenta com o tempo
 
         bird_props = bird.getBoundingClientRect();
 
+        // Verifica se o pássaro está fora dos limites da tela
         if (bird_props.top <= 0 || bird_props.bottom >= background.bottom) {
             game_state = 'End';
             message.style.left = '28vw';
@@ -124,18 +125,21 @@ function play() {
 }
 
 // Controle do movimento do pássaro com teclas
-let isKeyDown = false;  // Evitar múltiplos eventos enquanto a tecla estiver pressionada
+let isKeyDown = false;  // Impede que a tecla seja processada novamente enquanto pressionada
+
 document.addEventListener('keydown', (e) => {
+    // Verifica se a tecla pressionada é a seta para cima ou a barra de espaço
     if ((e.key == 'ArrowUp' || e.key == ' ') && !isKeyDown) {
-        isKeyDown = true;  // Impede que a tecla seja processada novamente enquanto pressionada
+        isKeyDown = true;  // Impede múltiplos eventos enquanto a tecla estiver pressionada
         img.src = 'img/Bird-2.png'; // Imagem do pássaro subindo
         bird_dy = -7.6; // Defina a aceleração para subir
     }
 });
 
+// Libera a tecla quando for solta
 document.addEventListener('keyup', (e) => {
     if (e.key == 'ArrowUp' || e.key == ' ') {
-        isKeyDown = false;  // Libera a tecla ao soltar
-        img.src = 'img/Bird.png'; // Imagem do pássaro normal
+        isKeyDown = false;  // Libera a tecla
+        img.src = 'img/Bird.png'; // Volta para a imagem normal do pássaro
     }
 });
